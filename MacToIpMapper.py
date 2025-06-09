@@ -14,9 +14,9 @@ def check_os(IP,username, password):
 
     guesser = SSHDetect(**remote_device)
     best_match = guesser.autodetect()
-    if best_match is None:
+    if not best_match:
         print('Could not detect OS, please check IP or Device')
-        raise ValueError(f"Unable to detect OS for device {IP}")
+        quit()
 
     #print(f'IP:{IP} OS is {best_match}')
     return best_match
