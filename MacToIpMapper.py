@@ -52,7 +52,7 @@ uplink=values[3]
 #Commands
 catosmac='show mac address-table dynamic'
 catosarp='show ip arp'
-nxsmac=''
+nxosmac=''
 nxsarp='show ip arp'
 aristamac=''
 aristaarp=''
