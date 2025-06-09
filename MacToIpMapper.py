@@ -5,12 +5,30 @@ from prettytable import PrettyTable
 from getpass import getpass
 import PySimpleGUI as sg
 
-def check_os(IP,username, password):
+def check_os(IP, username, password):
+    """Return the best matching device OS for *IP*.
 
-    remote_device = {'device_type': 'autodetect',
-                         'host': IP,
-                         'username': username,
-                         'password': password}
+    Args:
+        IP (str): Target device IP address.
+        username (str): Username for SSH login.
+        password (str): Password for SSH login.
+
+    The function creates a ``SSHDetect`` instance to probe the
+    device and determine the appropriate Netmiko ``device_type``.
+
+    Returns:
+        str: The detected device OS identifier.
+
+    Raises:
+        ValueError: If the OS cannot be determined.
+    """
+
+    remote_device = {
+        'device_type': 'autodetect',
+        'host': IP,
+        'username': username,
+        'password': password,
+    }
 
     guesser = SSHDetect(**remote_device)
     best_match = guesser.autodetect()
