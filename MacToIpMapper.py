@@ -14,12 +14,11 @@ def check_os(IP,username, password):
 
     guesser = SSHDetect(**remote_device)
     best_match = guesser.autodetect()
-    if best_match == 'None':
+    if best_match is None:
         print('Could not detect OS, please check IP or Device')
-        quit
-    else:
-        pass
-        #print(f'IP:{IP} OS is {best_match}')
+        raise ValueError(f"Unable to detect OS for device {IP}")
+
+    #print(f'IP:{IP} OS is {best_match}')
     return best_match
 
 sg.ChangeLookAndFeel('GreenTan')
